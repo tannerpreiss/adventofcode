@@ -5,22 +5,15 @@ if len(sys.argv) < 2:
    exit();
 
 filename = sys.argv[1]
-total_paper = 0
-total_ribbon = 0
+total_paper, total_ribbon = 0 , 0
 
 words = open(filename).read().split()
 for word in words:  		
-  measurements = word.split("x")
-  l = int(measurements[0])
-  w = int(measurements[1])
-  h = int(measurements[2])
-  s1 = l * w
-  s2 = l * h
-  s3 = w * h
-  gift_paper = 2 * (s1 + s2 + s3) + min(s1, s2, s3)
-  gift_ribbon = 2 * min(l+w, l+h, w+h) + (l*w*h)
-  total_paper += gift_paper
-  total_ribbon += gift_ribbon
+  l , w , h = map(int, word.split("x"))
+  s1, s2, s3 = l * w, l * h, w * h
+  total_paper += 2 * (s1 + s2 + s3) + min(s1, s2, s3)
+  total_ribbon += 2 * min(l+w, l+h, w+h) + (l*w*h)
 
-print "The elves need a total of " + str(total_paper) + " square feet of wrapping paper."
-print "The elves need a total of " + str(total_ribbon) + " feet of ribbon."
+print("The elves need a total of " + str(total_paper) + " square feet of wrapping paper.")
+print("The elves need a total of " + str(total_ribbon) + " feet of ribbon.")
+
