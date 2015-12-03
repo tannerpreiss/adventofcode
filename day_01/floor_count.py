@@ -6,18 +6,22 @@ if len(sys.argv) < 2:
 
 filename = sys.argv[1]
 floorcount = 0
+position = 0
+entered_basement = False
 
 with open(filename) as f:
   while True:
     c = f.read(1)
     if not c:
-      print "End of file"
       break
     if c == "(":
-      print("going up")
       floorcount += 1
     if c == ")":
-      print("going down")
       floorcount -= 1
-
+    if not entered_basement:
+      position += 1
+      if floorcount < 0:
+        entered_basement = True
+ 
+print("Santa entered the basement on position " + str(position))
 print("Santa ended on floor " + str(floorcount))
